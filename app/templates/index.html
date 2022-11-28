@@ -2,7 +2,7 @@
 {% load static %}
 {% load bootstrap5 %}
 {% block title_blcok %}
-<title>Главная</title>
+<title>Instargam</title>
 {% endblock %}
 {% block content_block %}
 <div class="container">
@@ -45,11 +45,14 @@
                             </p>
                             <p class="post-time">{{ post.created_at }}</p>
                         </div>
-                        <div class="comment-wrapper">
-                            <img src="img/smile.PNG" class="icon" alt="">
-                            <input type="text" class="comment-box" placeholder="Add a comment">
-                            <button class="comment-btn">post</button>
-                        </div>
+                        <form action="{% url 'comment' post.pk %}" method="post">
+                            <div class="comment-wrapper">
+                                <img src="{% static 'img/logos/smile.PNG' %}" class="icon" alt="">
+                                {% csrf_token %}
+                                <input type="text" class="comment-box" placeholder="Add a comment">
+                                <button class="comment-btn">post</button>
+                            </div>
+                        </form>
                     </div>
                     {% endfor %}
                     {% endfor %}

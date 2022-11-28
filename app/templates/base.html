@@ -27,7 +27,6 @@
             <a class="search_link" href="{% url 'search' %}"><i class="fa-solid fa-magnifying-glass"></i></a>
             <a href="{% url 'index' %}"><img src="{% static 'img/logos/home.PNG' %}" class="icon" alt=""></a>
             {% if user.is_authenticated %}
-            <img src="{% static 'img/logos/explore.PNG' %}" class="icon" alt="">
             <a href="{% url 'add_post' %}"><img src="{% static 'img/logos/add.PNG' %}" class="icon" alt=""></a>
             <a href="{% url 'profile' user.pk %}">{{ user.username }} <i class="ms-1 fa-regular fa-user"></i></a>
             <a href="{% url 'logout' %}"><i class="ms-3 fa-solid fa-arrow-right-from-bracket"></i></a>

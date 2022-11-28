@@ -6,6 +6,7 @@
 
 i, a {
     color: #000000;
+    text-decoration: none;
 }
 
 
@@ -106,6 +107,7 @@ body{
     color: #000;
     font-size: 14px;
     margin-left: 10px;
+    margin-bottom: 0;
 }
 
 .info .options{
@@ -154,7 +156,7 @@ body{
 
 .description span{
     font-weight: bold;
-    margin-right: 10px;
+    margin-right: 3px;
 }
 
 .post-time{
