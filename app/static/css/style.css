@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+i, a {
+    color: #000000;
+}
+
+
 *:focus{
     outline: none;
 }

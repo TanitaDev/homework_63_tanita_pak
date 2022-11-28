@@ -12,11 +12,6 @@
                 <div class="left-col d-flex flex-column align-items-center">
                     {% for sub in user.subscriptions.all %}
                     {% for post in sub.posts.all %}
-                    {{ post }}
-                    {% endfor %}
-                    {% endfor %}
-                    {% for post in posts %}
-
                     <div class="post w-50">
                         <div class="info">
                             <div class="user">
@@ -34,8 +29,6 @@
                                 <img src="img/send.PNG" class="icon" alt="">
                                 <img src="img/save.PNG" class="save icon" alt="">
                             </div>
-                            <p class="likes">{{ post.user_likes.count }}</p>
-
                             <form action="{% url 'like' post.pk %}" method="post">
                                 {% csrf_token %}
                                 {% if request.user in post.user_likes.all %}
@@ -46,6 +39,7 @@
                                         class="fa-regular fa-heart"></i></button>
                                 {% endif %}
                             </form>
+                            <p class="likes">Лайки: {{ post.user_likes.count }}</p>
                             <p class="description"><span><a href="{% url 'profile' post.author.pk %}">{{ post.author.username }}</a></span>
                                 {{ post.description }}
                             </p>
@@ -57,6 +51,7 @@
                             <button class="comment-btn">post</button>
                         </div>
                     </div>
+                    {% endfor %}
                     {% endfor %}
                 </div>
             </div>

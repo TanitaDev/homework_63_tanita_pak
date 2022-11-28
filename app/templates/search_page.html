@@ -11,15 +11,17 @@
             {% bootstrap_form form %}
             {% bootstrap_button button_type="submit" content='Найти' %}
         </form>
-        <div class="mt-4 d-flex">
-            {% for acc in accounts %}
-            <div class="ms-1 me-1 user_block">
-                <a class="d-flex" href="{% url 'profile' acc.pk %}">
-                    <img style="width: 200px;" src="{{ acc.avatar.url }}" alt="">
-                    <p>{{ acc.username }}</p>
-                </a>
+        <div class="d-flex justify-content-center">
+            <div class="mt-4 d-flex flex-wrap w-75 justify-content-center">
+                {% for acc in accounts %}
+                <div class="mx-1 my-2 user_block w-25">
+                    <a class="d-flex align-items-center" href="{% url 'profile' acc.pk %}">
+                        <img class="me-2" style="width: 100px; border-radius: 100%;" src="{{ acc.avatar.url }}" alt="">
+                        <p>{{ acc.username }}</p>
+                    </a>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
 </div>
