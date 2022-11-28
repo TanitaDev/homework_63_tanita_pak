@@ -69,7 +69,7 @@ class ProfileView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         user = self.get_object()
-        context['posts'] = Post.objects.filter(author=user)
+        context['posts'] = Post.objects.filter(author=user).order_by('-created_at')
         return context
 
 

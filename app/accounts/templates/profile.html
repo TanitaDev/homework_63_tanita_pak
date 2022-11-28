@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 {% load django_bootstrap5 %}
+{% block title_blcok %}
+<title>Профиль</title>
+{% endblock %}
 {% block profile_link_style %}
 <link rel="stylesheet" href="{% static 'css/profile-style.css' %}">
 {% endblock %}
 {% block content_block %}
 <div class="container d-flex justify-content-center">
-    <div class="row w-75">
+    <div class="row w-100">
         <header>
             <div class="container">
                 <div class="profile">
@@ -23,15 +26,37 @@
                     </div>
                     <div class="profile-stats">
                         <ul>
-                            <li><span class="profile-stat-count">164</span> posts</li>
-                            <li><span class="profile-stat-count">188</span> followers</li>
-                            <li><span class="profile-stat-count">206</span> following</li>
+                            <li><span class="profile-stat-count">{{ posts.count }}</span> posts</li>
+                            <li data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <span class="profile-stat-count">{{ user_obj.subscribers.count }}</span>
+                                Подписчики
+                            </li>
+                            <li data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                <span class="profile-stat-count">{{ user_obj.subscriptions.count }}</span>
+                                Подписки
+                            </li>
+
+                            {% include 'partial/sub_modal.html' %}
+
+
                         </ul>
+                        <form action="{% url 'subscribe' user_obj.pk %}" method="post">
+                            {% csrf_token %}
+                            {% if request.user in user_obj.subscribers.all %}
+                            <button style="font-size: 16px;" class="ms-4 mt-2 btn btn-secondary" type="submit">
+                                Отписаться
+                            </button>
+                            {% else %}
+                            <button style="font-size: 16px;" class="ms-4 mt-2 btn btn-primary" type="submit">
+                                Подписаться
+                            </button>
+                            {% endif %}
+                        </form>
                     </div>
                     <div class="profile-bio">
                         <p><span class="profile-real-name">{{ user_obj.first_name }} {{ user_obj.last_name }}</span>
-                            Lorem ipsum dolor sit, amet consectetur
-                            adipisicing elit 📷✈️🏕️</p>
+                            {{ user_obj.about }}
+                        </p>
                     </div>
                 </div>
             </div>

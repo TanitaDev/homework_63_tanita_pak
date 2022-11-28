@@ -123,6 +123,7 @@ body{
 .info .profile-pic img{
     border: none;
     width: 40px;
+    border-radius: 100%;
 }
 
 .post-image{

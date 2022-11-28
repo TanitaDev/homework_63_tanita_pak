@@ -8,6 +8,11 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+    color: #262626;
+}
+
 body {
     font-family: "Open Sans", Arial, sans-serif;
     min-height: 100vh;
@@ -26,15 +31,7 @@ img {
     padding: 0 2rem;
 }
 
-.btn {
-    display: inline-block;
-    font: inherit;
-    background: none;
-    border: none;
-    color: inherit;
-    padding: 0;
-    cursor: pointer;
-}
+
 
 .btn:focus {
     outline: 0.5rem auto #4d90fe;
@@ -357,4 +354,8 @@ img {
             margin: 0;
         }
     }
+}
+
+.subscribe_btn {
+
 }

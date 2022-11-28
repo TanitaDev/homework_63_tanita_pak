@@ -22,6 +22,7 @@ class Account(AbstractUser):
         blank=True,
         verbose_name='Дата рождения'
     )
+    about = models.TextField(verbose_name='О себе', blank=True, null=True, max_length=1000)
     liked_posts = models.ManyToManyField(verbose_name='Понравившиеся публикации', to='posts.Post',
                                          related_name='user_likes', blank=True)
     subscriptions = models.ManyToManyField(verbose_name='Подписки', to='accounts.Account', related_name='subscribers',

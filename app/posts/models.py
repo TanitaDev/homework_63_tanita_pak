@@ -9,6 +9,7 @@ class Post(models.Model):
     image = models.ImageField(verbose_name='Фото', null=False, blank=False, upload_to='posts')
     author = models.ForeignKey(to=get_user_model(), verbose_name='Автор', related_name='posts', null=False, blank=False,
                                on_delete=models.CASCADE)
+    created_at = models.DateTimeField(verbose_name='Дата добавления', auto_now_add=True)
 
     class Meta:
         verbose_name = 'Пост'
@@ -25,7 +26,7 @@ class Comment(models.Model):
     post = models.ForeignKey(verbose_name='Публикация', to='posts.Post', related_name='comments', null=False,
                              blank=False, on_delete=models.CASCADE)
     text = models.CharField(verbose_name='Текст', null=False, blank=False, max_length=200)
-
+    created_at = models.DateTimeField(verbose_name='Дата добавления', auto_now_add=True)
 
     class Meta:
         verbose_name = 'Комментарий'
