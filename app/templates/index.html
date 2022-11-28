@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap5 %}
+{% block title_blcok %}
+<title>Главная</title>
+{% endblock %}
+{% block content_block %}
+<div class="container">
+    <div class="row">
+        <section class="main">
+            <div class="wrapper">
+                <div class="left-col d-flex flex-column align-items-center">
+                    {% for post in posts %}
+                    <div class="post w-50">
+                        <div class="info">
+                            <div class="user">
+
+                                <div class="profile-pic"><img src="{{ post.author.avatar.url }}" alt=""></div>
+                                <p class="username">{{ post.author }}</p>
+                            </div>
+                            <img src="img/option.PNG" class="options" alt="">
+                        </div>
+                        <img src="{{ post.image.url }}" class="post-image" alt="">
+                        <div class="post-content">
+                            <div class="reaction-wrapper">
+                                <img src="img/like.PNG" class="icon" alt="">
+                                <img src="img/comment.PNG" class="icon" alt="">
+                                <img src="img/send.PNG" class="icon" alt="">
+                                <img src="img/save.PNG" class="save icon" alt="">
+                            </div>
+                            <p class="likes">1,012 likes</p>
+                            <p class="description"><span>username </span> Lorem ipsum dolor sit amet consectetur,
+                                adipisicing elit. Pariatur tenetur veritatis placeat, molestiae impedit aut provident
+                                eum quo natus molestias?</p>
+                            <p class="post-time">2 minutes ago</p>
+                        </div>
+                        <div class="comment-wrapper">
+                            <img src="img/smile.PNG" class="icon" alt="">
+                            <input type="text" class="comment-box" placeholder="Add a comment">
+                            <button class="comment-btn">post</button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
