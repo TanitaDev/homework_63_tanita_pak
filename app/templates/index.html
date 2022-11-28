@@ -10,9 +10,10 @@
         <section class="main">
             <div class="wrapper">
                 <div class="left-col d-flex flex-column align-items-center">
+                    {% if user.is_authenticated %}
                     {% for sub in user.subscriptions.all %}
                     {% for post in sub.posts.all %}
-                    <div class="post w-50">
+                    <div class="post w-50 pb-2">
                         <div class="info">
                             <div class="user">
                                 <div class="profile-pic"><img src="{{ post.author.avatar.url }}" alt=""></div>
@@ -23,12 +24,6 @@
                         </div>
                         <img src="{{ post.image.url }}" class="post-image" alt="">
                         <div class="post-content">
-                            <div class="reaction-wrapper">
-                                <img src="img/like.PNG" class="icon" alt="">
-                                <img src="img/comment.PNG" class="icon" alt="">
-                                <img src="img/send.PNG" class="icon" alt="">
-                                <img src="img/save.PNG" class="save icon" alt="">
-                            </div>
                             <form action="{% url 'like' post.pk %}" method="post">
                                 {% csrf_token %}
                                 {% if request.user in post.user_likes.all %}
@@ -49,13 +44,25 @@
                             <div class="comment-wrapper">
                                 <img src="{% static 'img/logos/smile.PNG' %}" class="icon" alt="">
                                 {% csrf_token %}
-                                <input type="text" class="comment-box" placeholder="Add a comment">
+                                {{ comment_form.text }}
                                 <button class="comment-btn">post</button>
                             </div>
                         </form>
+                        <div class="px-3 comment_block">
+                            {% for comment in post.comments.all %}
+                            <div class="d-flex my-2">
+                                <img class="me-2" style="width: 30px; border-radius: 100%;" src="{{ comment.author.avatar.url }}" alt="">
+                                <b class="me-2">{{ comment.author.username }}</b>
+                                <p>{{ comment.text }}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
                     </div>
                     {% endfor %}
                     {% endfor %}
+                    {% else %}
+                    <h2 class="pt-4">Войдите или зарегестрируйтесь, чтобы начать</h2>
+                    {% endif %}
                 </div>
             </div>
         </section>
